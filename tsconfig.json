@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "baseUrl": "src",
+    "paths": {
+      "*": ["*", "*.tsx", "*.ts", "*.css"]
+    },
+    "esModuleInterop": true
+  }
+} 

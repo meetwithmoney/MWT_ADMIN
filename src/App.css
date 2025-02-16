@@ -1,0 +1,226 @@
+/* App.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffffff;
+}
+
+.login-form {
+  width: 300px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.nav-links a:hover {
+  background-color: #0056b3;
+}
+
+.users-container {
+  padding: 20px;
+}
+
+.users-container h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table th, .users-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.users-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.payment-container {
+  padding: 20px;
+}
+
+.payment-container h2 {
+  margin-bottom: 15px;
+}
+
+.payment-container img {
+  max-width: 200px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.payment-container input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.nav-links .active {
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #4d5451;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+/* Modal styles */
+.modal {
+  position: fixed; /* Fixed position to cover the entire screen */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex; /* Flexbox to center the modal */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  z-index: 1000; /* Ensure modal is on top */
+}
+
+.modal-content {
+  background-color: white; /* White background for the modal content */
+  padding: 20px; /* Padding inside the modal */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  width: 400px; /* Fixed width for the modal */
+  max-width: 90%; /* Responsive width */
+}
+
+h2 {
+  margin-bottom: 20px; /* Space below the title */
+}
+
+label {
+  display: block; /* Block display for labels */
+  margin-bottom: 10px; /* Space below each label */
+}
+
+input {
+  width: 100%; /* Full width for inputs */
+  padding: 10px; /* Padding inside inputs */
+  margin-top: 5px; /* Space above inputs */
+  border: 1px solid #ccc; /* Border for inputs */
+  border-radius: 4px; /* Rounded corners for inputs */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+input:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Remove outline */
+}
+
+.modal-buttons {
+  display: flex; /* Flexbox for buttons */
+  justify-content: space-between; /* Space between buttons */
+  margin-top: 20px; /* Space above buttons */
+}
+
+button {
+  padding: 10px 15px; /* Padding for buttons */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners for buttons */
+  cursor: pointer; /* Pointer cursor for buttons */
+}
+
+button:hover {
+  background-color: #007bff; /* Change background on hover */
+  color: white; /* Change text color on hover */
+}
+
+
+/* Add this CSS to your App.css or relevant stylesheet */
+.pagination {
+  display: flex;
+  justify-content: center; /* Center the pagination */
+  margin-top: 20px; /* Adjust the margin to position it slightly down */
+}
+.pagination button {
+  text-align: center; /* Center the text inside the buttons */
+  padding: 5px 10px; /* Reduce padding for smaller buttons */
+  margin: 0 5px; /* Add some margin between buttons */
+  font-size: 14px; /* Adjust font size */
+}
+
+.pagination button:disabled {
+  background-color: #ccc; /* Change background color when disabled */
+  color: #666; /* Change text color when disabled */
+  cursor: not-allowed; /* Change cursor to not-allowed */
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.pagination-text {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-left: 10px 10px;
+}
