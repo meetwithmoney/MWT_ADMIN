@@ -3,6 +3,7 @@ import { loginDataReducer } from "features/auth/loginSlice";
 import { changePaymentPhotoReducer } from "features/payment/changePaymentPhotoSlice";
 import { currentPaymentPhotoReducer } from "features/payment/currentPaymentPhotoSlice";
 import { changeTheStatusReducer } from "features/userData/changeTheStatuSlice";
+import { deleteUserReducer } from "features/userData/deleteUserSlice";
 import { updateUserDataReducer } from "features/userData/updateUserDataSlice";
 import { userDataReducer } from "features/userData/userInfoSlice";
 
@@ -14,7 +15,8 @@ const store = configureStore({
     changeTheStatusReducer: changeTheStatusReducer,
     updateUserDataReducer: updateUserDataReducer,
     currentPaymentPhotoReducer: currentPaymentPhotoReducer,
-    changePaymentPhotoReducer: changePaymentPhotoReducer  
+    changePaymentPhotoReducer: changePaymentPhotoReducer,
+    deleteUserReducer: deleteUserReducer
   }),
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

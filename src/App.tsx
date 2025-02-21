@@ -28,7 +28,7 @@ const App: React.FC = () => {
             }
           >
             <Route path="users" element={<ProtectedRoute><Users /></ProtectedRoute>} />
-            <Route path="payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
+            {/* <Route path="payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} /> */}
           </Route>
         </Routes>
       </Router>

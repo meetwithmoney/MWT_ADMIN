@@ -7,6 +7,7 @@ import { AppDispatch } from 'app/store';
 import { changeTheStatusData } from 'features/userData/changeTheStatuSlice';
 import { showError } from 'helpers/messageHelper';
 import { updateUserData } from 'features/userData/updateUserDataSlice';
+import { deleteUserData } from 'features/userData/deleteUserSlice';
 
 
 const Users: React.FC = () => {
@@ -18,6 +19,10 @@ const Users: React.FC = () => {
   const dispatch = useAppDispatch();
   const [selectedUser, setSelectedUser] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+  const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
+  const [userToDelete, setUserToDelete] = useState<string | null>(null);
 
   
   const fetchUsers = async (page: number) => {
@@ -75,7 +80,64 @@ const Users: React.FC = () => {
     }
   };
 
+  const handleDeleteUser = async () => {
+    if (userToDelete) {
+      try {
+        const userDeleteAction = deleteUserData({ userId: userToDelete });
+        const { payload }: any = await (dispatch as AppDispatch)(userDeleteAction);
+        if (payload && payload.status === OK) {
+          await fetchUsers(currentPage);
+        } else {
+          showError(payload.data.message);
+        }
+      } catch (error) {
+        console.error('Error deleting user:', error);
+      } finally {
+        setIsConfirmDeleteOpen(false);
+        setUserToDelete(null);
+      }
+    }
+  };
+
+  const handlePhotoClick = (photo: string) => {
+    setSelectedPhoto(photo);
+    setIsPhotoModalOpen(true);
+  };
+
+  const openConfirmDelete = (userId: string) => {
+    setUserToDelete(userId);
+    setIsConfirmDeleteOpen(true);
+  };
+
   console.log("usersusersusers",users)
+
+  const modalStyles: React.CSSProperties = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1000,
+    overflow: 'hidden',
+  };
+
+  const modalContentStyles: React.CSSProperties = {
+    position: 'relative',
+    maxWidth: '80%',
+    maxHeight: '80%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  };
+
+  const imageStyles: React.CSSProperties = {
+    width: '100%',
+    height: 'auto',
+    maxHeight: '100%',
+  };
 
   return (
     <div className="users-container">
@@ -93,14 +155,18 @@ const Users: React.FC = () => {
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Mobile Number</th>
+                <th>Referal By</th>
                 <th>Referal Users Count</th>
                 <th>Total Earning</th>
                 <th>Approval Status</th>
-                <th>Status</th>
                 <th>Area</th>
+                <th>Payment Photo</th>
                 <th>Collage</th>
                 <th>Age</th>
+                <th>Status</th>
                 <th>Edit</th>
+                <th>Delete</th>
+
               </tr>
             </thead>
             <tbody>
@@ -112,19 +178,32 @@ const Users: React.FC = () => {
                   <td>{user.last_name}</td>
                   <td>{user.email}</td>
                   <td>{user.mobile_number}</td>
+                  <td>{user.referral_by ?? '-'}</td>
                   <td>{user.people_count}</td>
                   <td>{user.total_earnings}</td>
                   <td style={{ color: user.approved_by_admin ? 'green' : 'red' }}>
                     {user.approved_by_admin ? "Approved" : "Pending"}
                   </td>
-                  <td>
-                    <button onClick={() => handleChangeStatus(user._id)}>Click to change</button>
-                  </td>
+                 
                   <td>{user.area}</td>
+                  <td>
+                    <img 
+                      src={user.payment_qr_code} 
+                      alt="Payment QR Code" 
+                      style={{ width: '100px', height: '100px', cursor: 'pointer' }} 
+                      onClick={() => handlePhotoClick(user.payment_qr_code)} 
+                    />
+                  </td>
                   <td>{user.collage_name}</td>
                   <td>{user.age}</td>
                   <td>
+                    <button onClick={() => handleChangeStatus(user._id)}>Click to change</button>
+                  </td>
+                  <td>
                     <button onClick={() => handleEditClick(user)}>✏️</button>
+                  </td>
+                  <td>
+                    <button onClick={() => openConfirmDelete(user._id)}>Delete User</button>
                   </td>
                 </tr>
               ))}
@@ -198,6 +277,28 @@ const Users: React.FC = () => {
               Next
             </button>
           </div>
+
+          {isPhotoModalOpen && (
+            <div className="photo-modal">
+              <div className="photo-modal-content">
+                <span className="close" onClick={() => setIsPhotoModalOpen(false)}>&times;</span>
+                <img src={selectedPhoto} alt="Payment QR Code" style={imageStyles} />
+              </div>
+            </div>
+          )}
+
+          {isConfirmDeleteOpen && (
+            <div className="modal">
+              <div className="modal-content">
+                <h2>Confirm Deletion</h2>
+                <p>Are you sure you want to delete this user?</p>
+                <div className="modal-buttons">
+                  <button onClick={() => setIsConfirmDeleteOpen(false)}>Cancel</button>
+                  <button onClick={handleDeleteUser}>Delete</button>
+                </div>
+              </div>
+            </div>
+          )}
         </>
       )}
     </div>

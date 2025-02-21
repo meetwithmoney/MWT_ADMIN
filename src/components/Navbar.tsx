@@ -22,12 +22,12 @@ const Navbar: React.FC = () => {
         >
           Users
         </Link>
-        <Link 
+        {/* <Link 
           to="/dashboard/payment" 
           className={location.pathname === '/dashboard/payment' ? 'active' : ''}
         >
           Payment
-        </Link>
+        </Link> */}
         <button onClick={handleLogout} className="logout-button">
           Logout
         </button>

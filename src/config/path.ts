@@ -13,5 +13,6 @@ export const apiEndPoints = {
   CHANGE_THE_STATUS: "change-status",
   UPDATE_USER_DATA: "edit-user-profile",
   GET_CURRENT_PAYMENT_PHOTO: "payment-photo", 
-  CHANGE_PAYMENT_PHOTO: "change-payment-qr-code"
+  CHANGE_PAYMENT_PHOTO: "change-payment-qr-code",
+  DELETE_USER: "delete-user",
 };  
